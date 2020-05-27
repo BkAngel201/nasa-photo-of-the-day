@@ -1,0 +1,14 @@
+.main_picture {
+    display: flex;
+    width: 100%;
+    position: relative;
+    background-color: dimgray;
+    height: 100vh;
+}
+.main_picture img {
+    display: flex;
+    max-width: 90%;
+    width: auto;
+    max-height: 90%;
+    margin: auto;
+}

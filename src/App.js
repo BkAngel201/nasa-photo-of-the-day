@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
+import axios from "axios"
 import "./App.css";
+import MainPicture from './MainPicture/MainPicture'
+import SidePictureBar from './SidePictureBar/SidePictureBar'
+import PictureInfo from "./MainPicture/PictureInfo";
 
 function App() {
-  return (
-    <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role="img" aria-label='go!'>🚀</span>!
-      </p>
-    </div>
-  );
+  const [picturesInfo, setPicturesInfo] = useState('')
+  const [pictureShow, setPictureShow] = useState(0)
+  const [dayToShow, setDayToShow] = useState(["2020-5-26", "2020-5-25", "2020-5-24", "2020-5-23", "2020-5-22", "2020-5-21"])
+  
+ 
+  
+  useEffect(()=> {
+    axios.all(dayToShow.map(el => {
+      return axios.get(`https://api.nasa.gov/planetary/apod?api_key=cgfYvqOxN5NfUqq5wFuzgLu93yenaQQBApHhtgJX&date=${el}`)
+    }))
+    .then(axios.spread((...response) => {
+      setPicturesInfo(response)
+    }))
+  },[])
+  
+  if(picturesInfo === '') {
+    return "loading..."
+  } else {
+    return (
+      <div className="App">
+        <SidePictureBar InfoPicture={picturesInfo} PictureToShow={setPictureShow}/>
+        <MainPicture PictureInfo={picturesInfo} PictureToShow={pictureShow}/>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
