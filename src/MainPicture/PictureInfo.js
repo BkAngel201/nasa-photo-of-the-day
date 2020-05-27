@@ -10,8 +10,8 @@ function PictureInfo (props) {
         </div>
           
           <p>{props.info.explanation}</p>
+          {(props.info.copyright !== undefined) ? <span>Copyright: {props.info.copyright}</span> : <span>Copyright: Unknown</span>}
           
-          <span>Picture By: {props.info.copyright}</span>
       </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios'
+import ReactPlayer from "react-player"
 import "./MainPicture.css";
 import PictureInfo from "./PictureInfo"
 
@@ -8,16 +8,27 @@ function MainPicture(props) {
 
 
     useEffect(() => {
-        setPictOfDay(props.PictureInfo[props.PictureToShow].data)
+        setPictOfDay(props.PictureToShow)
     },[props.PictureToShow])
     
       
     if(pictOfDay == '') {
         return "Loading..."
-    } else {
+    } else if(pictOfDay.media_type === "image"){
         return (
             <div className="main_picture">
                 <img src={`${pictOfDay.url}`} />
+                <PictureInfo info={pictOfDay}/>
+            </div>
+        );
+    } else {
+        return (
+            <div className="main_picture">
+                <ReactPlayer 
+                    url={pictOfDay.url} 
+                    width="100%"
+                    height="557px"
+                />
                 <PictureInfo info={pictOfDay}/>
             </div>
         );

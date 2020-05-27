@@ -18,16 +18,18 @@ function App() {
     }))
     .then(axios.spread((...response) => {
       setPicturesInfo(response)
+      setPictureShow(response[0].data)
+      
     }))
-  },[])
+  },dayToShow)
   
   if(picturesInfo === '') {
     return "loading..."
   } else {
     return (
       <div className="App">
-        <SidePictureBar InfoPicture={picturesInfo} PictureToShow={setPictureShow}/>
-        <MainPicture PictureInfo={picturesInfo} PictureToShow={pictureShow}/>
+        <SidePictureBar InfoPicture={picturesInfo} PictureToShow={setPictureShow} SetDayToShow={setDayToShow}/>
+        <MainPicture PictureToShow={pictureShow}/>
       </div>
     );
   }

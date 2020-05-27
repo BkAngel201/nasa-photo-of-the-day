@@ -15,5 +15,5 @@
 
 .side_picture_bar .picture_list_item img {
     width: 100%;
-
+    min-height: 100%;
 }
