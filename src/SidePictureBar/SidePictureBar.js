@@ -10,7 +10,7 @@ function SidePictureBar(props) {
         ["2020-3-6", "2020-3-5", "2020-3-4", "2020-3-3", "2020-3-2", "2020-3-1"],
         ["2020-2-16", "2020-2-15", "2020-2-14", "2020-2-13", "2020-2-12", "2020-2-11"],
     ]
-useEffect(() => {setPicturesInfo(props.InfoPicture)})
+useEffect(() => {setPicturesInfo(props.InfoPicture)},[props.InfoPicture])
     if(picturesInfo !== '')
     {
         return (
