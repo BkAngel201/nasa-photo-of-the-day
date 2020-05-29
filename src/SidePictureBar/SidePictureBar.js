@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios'
-import "./SidePictureBar.css";
 
 function SidePictureBar(props) {
     const [picturesInfo, setPicturesInfo] = useState('')
@@ -14,10 +12,10 @@ useEffect(() => {setPicturesInfo(props.InfoPicture)},[props.InfoPicture])
     if(picturesInfo !== '')
     {
         return (
-            <div className="side_picture_bar">
+            <div className="side_picture_bar flex flex-col mr-2">
                 <select onChange={(e) => {
                     props.SetDayToShow(weeksToShow[e.target.value])
-                }}>
+                }} className="p-2 border-solid border-2 border-red-600 bg-gray-500">
                     {
                     weeksToShow.map((el, index) => {
                         return <option value={index}>{`${el[0]} to ${el[el.length-1]}`}</option>
@@ -26,12 +24,7 @@ useEffect(() => {setPicturesInfo(props.InfoPicture)},[props.InfoPicture])
                 </select>
                 {
                 picturesInfo.map((el, index) => {
-                    if(el.data.media_type === "image") {
-                        return <div className="picture_list_item"><img src={el.data.url}  onClick={()=>{props.PictureToShow(el.data)}}/></div>
-                    } else {
-                        return <div className="picture_list_item"><img src="videoPlayback.png"  onClick={()=>{props.PictureToShow(el.data)}}/></div>
-                    }
-                   
+                    return <div className="picture_list_item w-full border-solid border-2 border-red-600 overflow-hidden mt-2"><img className="w-full min-h-full" src={el.data.media_type === "image"? el.data.url : "videoPlayback.png" }  onClick={()=>{props.PictureToShow(el.data)}}/></div>
                 })
                 }
                 

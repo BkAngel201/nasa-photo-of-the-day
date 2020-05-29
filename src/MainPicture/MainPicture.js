@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player"
-import "./MainPicture.css";
 import PictureInfo from "./PictureInfo"
 
 function MainPicture(props) {
@@ -16,14 +15,14 @@ function MainPicture(props) {
         return "Loading..."
     } else if(pictOfDay.media_type === "image"){
         return (
-            <div className="main_picture">
-                <img src={`${pictOfDay.url}`} />
+            <div className="main_picture flex w-full relative bg-gray-500 h-screen">
+                <img className="flex w-auto m-auto" src={`${pictOfDay.url}`} />
                 <PictureInfo info={pictOfDay}/>
             </div>
         );
     } else {
         return (
-            <div className="main_picture">
+            <div className="main_picture flex w-full relative bg-gray-500 h-screen">
                 <ReactPlayer 
                     url={pictOfDay.url} 
                     width="100%"

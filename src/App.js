@@ -1,6 +1,5 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios"
-import "./App.css";
 import MainPicture from './MainPicture/MainPicture'
 import SidePictureBar from './SidePictureBar/SidePictureBar'
 import PictureInfo from "./MainPicture/PictureInfo";
@@ -27,7 +26,7 @@ function App() {
     return "loading..."
   } else {
     return (
-      <div className="App">
+      <div className="App flex m-auto">
         <SidePictureBar InfoPicture={picturesInfo} PictureToShow={setPictureShow} SetDayToShow={setDayToShow}/>
         <MainPicture PictureToShow={pictureShow}/>
       </div>
